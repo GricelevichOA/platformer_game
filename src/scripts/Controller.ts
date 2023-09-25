@@ -21,7 +21,6 @@ export class Controller {
 
   
   setPlayerVelocityX(direction: number) {
-    // console.log("velocity set to ", direction);
     this.model.player.velocity.x = direction;
   }
 

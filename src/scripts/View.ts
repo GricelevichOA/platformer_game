@@ -27,7 +27,7 @@ export class View {
   updatePosition(model: Model) {
     // level
     // отрисовка фона
-    this.context.drawImage(this.currentLevel.image, this.currentLevel.position.x, this.currentLevel.position.y);
+    this.context.drawImage(model.currentLevel.background.image, this.currentLevel.position.x, this.currentLevel.position.y);
     // отрисовка коллизий
     model.currentLevel.collisions.forEach(block => {
       block.draw(this.context);

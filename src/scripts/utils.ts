@@ -1,10 +1,10 @@
 import { CollisionBlock } from "./CollisionBlock";
 import { FIELD_WIDTH, TILE_HEIGHT, TILE_WIDTH } from "./constants";
 
-export function parseCollisions(data: number[]) {
+export function parseCollisions(data: number[], width: number) {
   const rows: any[] = [];
-  for (let i = 0; i < data.length; i += FIELD_WIDTH) {
-    rows.push(data.slice(i, i + FIELD_WIDTH));
+  for (let i = 0; i < data.length; i += width) {
+    rows.push(data.slice(i, i + width));
   }
 
   return rows;

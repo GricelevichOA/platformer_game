@@ -7,8 +7,10 @@ import {
   JUMP_FORCE,
   TILE_WIDTH,
   PLAYER_WIDTH,
+  RIGHT_BOUND,
+  LEFT_BOUND,
 } from "./constants";
-import { testLevel } from "./data/levels_data";
+import { testLevel, testLevelWide } from "./data/levels_data";
 
 export class Model {
   currentLevel: Level | null;
@@ -18,7 +20,7 @@ export class Model {
 
   constructor() {
     this.gameState = GAME_STATE.MENU;
-    this.currentLevel = testLevel;
+    this.currentLevel = testLevelWide;
 
     this.player = new Player();
 
@@ -26,6 +28,8 @@ export class Model {
   }
 
   updatePosition() {
+    // console.log(this.player.position);
+    
     this.player.position.x += this.player.velocity.x * PLAYER_SPEED;
     // check horizontal collision
     const collisions = this.currentLevel.collisions;
@@ -81,6 +85,24 @@ export class Model {
         }
       }
     }
+
+    console.log(this.player.position.x);
+    
+
+    for (let i = 0; i < collisions.length; i++) {
+      const collision = collisions[i];
+
+      if (this.player.position.x >= RIGHT_BOUND) {
+        this.player.position.x = RIGHT_BOUND;
+        collision.position.x -= this.player.velocity.x * PLAYER_SPEED;
+      }
+
+      if (this.player.position.x <= LEFT_BOUND) {
+        this.player.position.x = LEFT_BOUND;
+        collision.position.x -= this.player.velocity.x * PLAYER_SPEED;
+      }
+    }
+
   }
 
   applyGravity() {
