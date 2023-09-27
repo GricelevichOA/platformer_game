@@ -1,6 +1,6 @@
 import { CollisionBlock } from "./CollisionBlock";
 import { Sprite } from "./Sprite";
-import { Coords } from "./types";
+import { Coords } from "../types";
 
 export class Level {
   collisions: CollisionBlock[];

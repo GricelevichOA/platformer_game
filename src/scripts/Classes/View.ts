@@ -1,6 +1,6 @@
 import { Model } from "./Model";
 import { Sprite } from "./Sprite";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "./constants";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../constants";
 
 
 export class View {
@@ -14,20 +14,12 @@ export class View {
 
     this.canvas.width = SCREEN_WIDTH;
     this.canvas.height = SCREEN_HEIGHT;
-
-    this.currentLevel = new Sprite({
-      position: {
-        x: 0,
-        y: 0
-      },
-      imageSrc: "../../images/test_level.png",
-    });
   }
 
   updatePosition(model: Model) {
     // level
     // отрисовка фона
-    this.context.drawImage(model.currentLevel.background.image, this.currentLevel.position.x, this.currentLevel.position.y);
+    this.context.drawImage(model.currentLevel.background.image, model.currentLevel.background.position.x, model.currentLevel.background.position.y);
     // отрисовка коллизий
     model.currentLevel.collisions.forEach(block => {
       block.draw(this.context);

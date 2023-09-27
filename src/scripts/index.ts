@@ -1,8 +1,8 @@
 import "../styles.css";
 
-import { View } from "./View";
-import { Model } from "./Model";
-import { Controller } from "./Controller";
+import { View } from "./Classes/View";
+import { Model } from "./Classes/Model";
+import { Controller } from "./Classes/Controller";
 
 import { FPS, KEYS, NO_TIMER_VALUE } from "./constants";
 

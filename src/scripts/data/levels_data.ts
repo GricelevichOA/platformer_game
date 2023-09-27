@@ -1,5 +1,5 @@
-import { CollisionBlock } from "../CollisionBlock";
-import { Level } from "../Level";
+import { CollisionBlock } from "../Classes/CollisionBlock";
+import { Level } from "../Classes/Level";
 import { FIELD_WIDTH, TILE_HEIGHT, TILE_WIDTH, WIDE_FIELD_WIDTH } from "../constants";
 import { parseCollisions, createCollisionBlocks } from "../utils";
 

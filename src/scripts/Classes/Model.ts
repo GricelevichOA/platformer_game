@@ -9,29 +9,57 @@ import {
   PLAYER_WIDTH,
   RIGHT_BOUND,
   LEFT_BOUND,
-} from "./constants";
-import { testLevel, testLevelWide } from "./data/levels_data";
+} from "../constants";
+import { testLevel, testLevelWide } from "../data/levels_data";
 
 export class Model {
   currentLevel: Level | null;
   gameState: string;
-
   player: Player;
+  offset: number;
+
+  state: any;
 
   constructor() {
     this.gameState = GAME_STATE.MENU;
     this.currentLevel = testLevelWide;
 
     this.player = new Player();
-
-    console.log(this.currentLevel);
+    this.player.setInitialPosition(this.currentLevel.playerStartPos);
+    this.offset = 0;
   }
 
   updatePosition() {
     // console.log(this.player.position);
     
+    // player
     this.player.position.x += this.player.velocity.x * PLAYER_SPEED;
-    // check horizontal collision
+    this.player.updateState();
+    
+    // physics
+    this.checForkHorizontalCollisions();
+    this.applyGravity();
+    this.checkForVerticalCollisions();
+
+    // shift level
+    this.shiftLevel();
+
+    // console.log(collisions[0].position);
+  }
+
+  jump() {
+    if (this.player.canJump) {
+      this.player.canJump = false;
+      this.player.velocity.y = JUMP_FORCE;
+    }
+  }
+
+  private applyGravity() {
+    this.player.velocity.y += 1;
+    this.player.position.y += this.player.velocity.y;
+  }
+
+  private checForkHorizontalCollisions() {
     const collisions = this.currentLevel.collisions;
     for (let i = 0; i < collisions.length; i++) {
       const collision = collisions[i];
@@ -54,10 +82,10 @@ export class Model {
         }
       }
     }
+  }
 
-    this.applyGravity();
-
-    // check vertical collisions
+  private checkForVerticalCollisions() {
+    const collisions = this.currentLevel.collisions;
     for (let i = 0; i < collisions.length; i++) {
       const collision = collisions[i];
       if (
@@ -78,6 +106,7 @@ export class Model {
           this.player.position.y =
             collision.position.y - this.player.height - 0.01;
 
+          // если игрок касается земли, то может снова
           if (!this.player.canJump) {
             this.player.canJump = true;
           }
@@ -85,10 +114,10 @@ export class Model {
         }
       }
     }
+  }
 
-    console.log(this.player.position.x);
-    
-
+  private shiftLevel() {
+    const collisions = this.currentLevel.collisions;
     for (let i = 0; i < collisions.length; i++) {
       const collision = collisions[i];
 
@@ -101,19 +130,6 @@ export class Model {
         this.player.position.x = LEFT_BOUND;
         collision.position.x -= this.player.velocity.x * PLAYER_SPEED;
       }
-    }
-
-  }
-
-  applyGravity() {
-    this.player.velocity.y += 1;
-    this.player.position.y += this.player.velocity.y;
-  }
-
-  jump() {
-    if (this.player.canJump) {
-      this.player.canJump = false;
-      this.player.velocity.y = JUMP_FORCE;
     }
   }
 }

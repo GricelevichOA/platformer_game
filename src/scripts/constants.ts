@@ -42,4 +42,6 @@ export const PLAYER_STATE = {
   IDLE: "Idle",
   MOVE: "Move",
   ATTACK: "Attack",
+  JUMP: "Jump",
+  FALL: "Fall"
 }

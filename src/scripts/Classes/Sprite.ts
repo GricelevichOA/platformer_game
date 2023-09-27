@@ -1,4 +1,4 @@
-import { SpriteInfo } from "./types";
+import { SpriteInfo } from "../types";
 
 export class Sprite {
   image: HTMLImageElement;

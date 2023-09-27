@@ -1,5 +1,5 @@
-import { TILE_HEIGHT, TILE_WIDTH } from "./constants";
-import { Coords } from "./types";
+import { TILE_HEIGHT, TILE_WIDTH } from "../constants";
+import { Coords } from "../types";
 
 export class CollisionBlock {
   position: Coords;
