@@ -2,9 +2,106 @@ body {
   margin: 0;
   box-sizing: border-box;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
   background: black;
 }
 
 #game {
   border: 1px solid #ffffff;
+}
+
+#status {
+  color: white;
+
+  position: absolute;
+
+  top: 0;
+}
+
+#main {
+  width: 80%;
+  color: white;
+
+  position: relative;
+
+  font-family: 'Pixelify Sans', cursive;
+  font-weight: bold;
+  /* font-size: 2rem; */
+}
+
+h1 {
+  font-size: 2em;
+}
+
+canvas {
+  width: 100%;
+}
+
+.menu {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  height: 100%;
+}
+
+.menu__item {
+  width: 200px;
+  height: 80px;
+  border: none;
+
+  color: #ffffff;
+  background: #1f15a7;
+
+  font-size: 2rem;
+  font-family: 'Pixelify Sans', cursive;
+
+  transition: background 0.4s ease-in-out;
+}
+
+.menu__item:hover {
+  background: #5316b6;
+}
+
+.menu__item:active {
+  background: #a774f8;
+
+  transition: background 0.1s linear;
+}
+
+.menu__back {
+  background: #da363e;
+}
+
+.hidden {
+  display: none;
+}
+
+.img {
+  height: 60%;
+  width: 100%;
+
+  background: url("../images/controls.png") no-repeat center/contain;
+}
+
+img {
+  display: block;
+  object-fit: contain;
 }

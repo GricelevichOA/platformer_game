@@ -4,10 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Untitled Platformer Game</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <canvas id="game"></canvas>
+  <div id="main">
+    <div class="menu">
+      <div class="menu__main menu__list">
+        <h1>UNTITLED PLATFORMER GAME</h1>
+        <button class="menu__item" id="start-game">Start</button>
+        <button class="menu__item" id="select-level">Select Level</button>
+        <button class="menu__item" id="show-controls">Show controls</button>
+      </div>
+      <div class="menu__levels menu__list hidden">
+        <button class="menu__item menu__back">Back</button>
+      </div>
+      <div class="menu__controls menu__list hidden">
+        <div class="img">
+          <!-- <img src="./images/controls.png" alt="W - Jump, A - Move Left, D - Move Right, Esc - Pause"> -->
+        </div>
+        <button class="menu__item menu__back">Back</button>
+      </div>
+      <div class="menu__pause menu__list hidden">
+        <button class="menu__item">Resume</button>
+        <button class="menu__item">Exit To Menu</button>
+      </div>
+    </div>
+    <canvas id="game"></canvas>
+
+    <span id="status">test</span>
+
+  </div>
   
   <script src="./dist/bundle.js"></script>
 </body>

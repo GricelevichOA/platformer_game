@@ -10,10 +10,9 @@ import {
   RIGHT_BOUND,
   LEFT_BOUND,
 } from "../constants";
-import { testLevel, testLevelWide } from "../data/levels_data";
 
 export class Model {
-  currentLevel: Level | null;
+  currentLevel: Level;
   gameState: string;
   player: Player;
   offset: number;
@@ -22,29 +21,35 @@ export class Model {
 
   constructor() {
     this.gameState = GAME_STATE.MENU;
-    this.currentLevel = testLevelWide;
+    this.currentLevel = null;
+    this.player = null;
 
-    this.player = new Player();
-    this.player.setInitialPosition(this.currentLevel.playerStartPos);
-    this.offset = 0;
+    this.state = document.querySelector("#status");
+    
   }
 
-  updatePosition() {
-    // console.log(this.player.position);
-    
+  updatePosition() {        
     // player
     this.player.position.x += this.player.velocity.x * PLAYER_SPEED;
     this.player.updateState();
+    
     
     // physics
     this.checForkHorizontalCollisions();
     this.applyGravity();
     this.checkForVerticalCollisions();
 
+
     // shift level
     this.shiftLevel();
 
-    // console.log(collisions[0].position);
+    this.state.innerText = `
+      game status = ${this.gameState}
+      player pos x = ${this.player.position.x}
+      player pos y = ${this.player.position.y}
+      player can jump = ${this.player.canJump}
+      player state = ${this.player.state}
+    `
   }
 
   jump() {
@@ -70,14 +75,12 @@ export class Model {
         this.player.position.y <= collision.position.y + collision.height
       ) {
         if (this.player.velocity.x < 0) {
-          this.player.position.x =
-            collision.position.x + collision.width + 0.01;
+          this.player.position.x = collision.position.x + collision.width + 0.01;
           break;
         }
 
         if (this.player.velocity.x > 0) {
-          this.player.position.x =
-            collision.position.x - this.player.width - 0.01;
+          this.player.position.x = collision.position.x - this.player.width - 0.01;
           break;
         }
       }
@@ -94,19 +97,18 @@ export class Model {
         this.player.position.y + this.player.height >= collision.position.y &&
         this.player.position.y <= collision.position.y + collision.height
       ) {
+        
         if (this.player.velocity.y < 0) {
-          this.player.velocity.y = 0;
-          this.player.position.y =
-            collision.position.y + collision.height + 0.01;
+          this.player.velocity.y = 0; 
+          this.player.position.y = collision.position.y + collision.height + 0.01;
           break;
         }
 
         if (this.player.velocity.y > 0) {
           this.player.velocity.y = 0;
-          this.player.position.y =
-            collision.position.y - this.player.height - 0.01;
+          this.player.position.y = collision.position.y - this.player.height - 0.01;
 
-          // если игрок касается земли, то может снова
+          // если игрок касается земли, то может снова прыгать
           if (!this.player.canJump) {
             this.player.canJump = true;
           }
