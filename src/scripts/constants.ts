@@ -12,8 +12,7 @@ export const TILE_WIDTH = 32;
 export const TILE_HEIGHT = 32;
 
 // количество тайлов в уровне в ширину
-export const FIELD_WIDTH = 32;
-export const WIDE_FIELD_WIDTH = 64;
+export const BASE_LEVEL_WIDTH = 64;
 
 
 export const GAME_STATE = {

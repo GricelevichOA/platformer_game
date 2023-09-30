@@ -1,5 +1,5 @@
 import { CollisionBlock } from "./Classes/CollisionBlock";
-import { FIELD_WIDTH, TILE_HEIGHT, TILE_WIDTH } from "./constants";
+import { TILE_HEIGHT, TILE_WIDTH } from "./constants";
 import { levels } from "./data/levels_data";
 
 export function parseCollisions(data: number[], width: number) {

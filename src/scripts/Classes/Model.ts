@@ -3,10 +3,7 @@ import { Player } from "./Player";
 import {
   GAME_STATE,
   PLAYER_SPEED,
-  SCREEN_HEIGHT,
   JUMP_FORCE,
-  TILE_WIDTH,
-  PLAYER_WIDTH,
   RIGHT_BOUND,
   LEFT_BOUND,
 } from "../constants";

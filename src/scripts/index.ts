@@ -111,3 +111,6 @@ showControlButtons.addEventListener("click", () => {
   mainMenu.classList.add("hidden");
 });
 
+document.addEventListener("reset", (e) => {
+  e.preventDefault();
+})
