@@ -1,5 +1,6 @@
 import { CollisionBlock } from "./Classes/CollisionBlock";
 import { FIELD_WIDTH, TILE_HEIGHT, TILE_WIDTH } from "./constants";
+import { levels } from "./data/levels_data";
 
 export function parseCollisions(data: number[], width: number) {
   const rows: any[] = [];
@@ -15,7 +16,7 @@ export function createCollisionBlocks(array: any[]) {
 
   array.forEach((row, y) => {
     row.forEach((symbol: number, x: number) => {
-      if (symbol === 36) {
+      if (symbol === 1) {
         // add collision to collisions array
         output.push(new CollisionBlock({
           position: {
@@ -28,4 +29,23 @@ export function createCollisionBlocks(array: any[]) {
   });
 
   return output;
+};
+
+export function addLevelsToMenu() {
+  const levelsMenu = document.querySelector(".menu__levels");
+
+  levels.forEach((level, index) => {
+    const menuItem = document.createElement("button");
+    menuItem.classList.add("menu__item");
+    menuItem.dataset.level = index.toString();
+    menuItem.innerText = `Level ${index + 1}`;
+
+    levelsMenu.append(menuItem);
+  });
+}
+
+export function backToMainMenu(elem: HTMLElement) {
+  const mainMenu = document.querySelector(".menu__main");
+  elem.parentElement.classList.add("hidden");
+  mainMenu.classList.remove("hidden");
 }

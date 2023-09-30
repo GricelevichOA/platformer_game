@@ -9,4 +9,5 @@ export type SpriteInfo = {
     y: number,
   },
   imageSrc: string,
+  framesCount: number
 }

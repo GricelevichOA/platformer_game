@@ -19,6 +19,7 @@ export const WIDE_FIELD_WIDTH = 64;
 export const GAME_STATE = {
   MENU: "Menu",
   GAMEPLAY: "Gameplay",
+  PAUSE: "Pause"
 }
 
 // ====== PLAYER VARIABLES ======
@@ -41,7 +42,6 @@ export const KEYS = {
 export const PLAYER_STATE = {
   IDLE: "Idle",
   MOVE: "Move",
-  ATTACK: "Attack",
   JUMP: "Jump",
   FALL: "Fall"
 }
