@@ -5,3 +5,6 @@ npm i
 npm build
 ```
 then run index.html
+
+
+unfinished but i looking forward to complete this project
